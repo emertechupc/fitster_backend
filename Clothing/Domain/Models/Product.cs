@@ -11,5 +11,5 @@ public class Product
     public int TypeId { get; set; }
     public Type? Type { get; set; }
     public int BrandId { get; set; }
-    //public Brand Brand { get; set; }
+    public Brand? Brand { get; set; }
 }

@@ -1,6 +1,6 @@
 namespace Fitster.API.Clothing.Domain.Models;
 
-public class Type 
+public class Brand
 {
     public int Id { get; set; }
     public string Name { get; set; } = default!;
