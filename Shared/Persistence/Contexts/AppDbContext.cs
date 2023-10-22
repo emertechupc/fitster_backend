@@ -1,7 +1,6 @@
 using Fitster.API.Clothing.Domain.Models;
-using Leasy.API.Shared.Extensions;
+using Fitster.API.Shared.Extensions;
 using Fitster.API.Clothing.Resources;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace Fitster.API.Shared.Persistence.Contexts;
@@ -27,7 +26,7 @@ public class AppDbContext: DbContext
         builder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(256);
         builder.Entity<Product>().Property(p => p.Description).IsRequired().HasMaxLength(512);
-        builder.Entity<Product>().Property(p => p.Rating);
+        builder.Entity<Product>().Property(p => p.Rating).HasColumnType("decimal(10,2)");
 
         //Relationships
         builder.Entity<Product>()
@@ -35,12 +34,32 @@ public class AppDbContext: DbContext
             .WithMany(c => c.Products)
             .HasForeignKey(p => p.CategoryId);
 
+        builder.Entity<Product>()
+            .HasOne(p => p.Type)
+            .WithMany(t => t.Products)
+            .HasForeignKey(p => p.TypeId);
+        
+        builder.Entity<Product>()
+            .HasOne(p => p.Brand)
+            .WithMany(b => b.Products)
+            .HasForeignKey(p => p.BrandId);
 
+        //Product Details
+        builder.Entity<ProductDetail>().ToTable("ProductDetails");
+        builder.Entity<ProductDetail>()
+            .HasIndex(pd => pd.Id)
+            .IsUnique();
+        builder.Entity<ProductDetail>().Property(pd => pd.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<ProductDetail>().Property(pd => pd.Size).IsRequired().HasMaxLength(10);
+        builder.Entity<ProductDetail>().Property(pd => pd.Price).IsRequired().HasColumnType("decimal(10,2)");
+        builder.Entity<ProductDetail>().Property(pd => pd.Image).HasMaxLength(1024);
+        builder.Entity<ProductDetail>().Property(pd => pd.Stock).IsRequired();
+        builder.Entity<ProductDetail>().Property(pd => pd.Model3d).HasMaxLength(2056);
 
-
-
-
-
+        builder.Entity<ProductDetail>()
+            .HasOne(p => p.Product)
+            .WithMany(pd => pd.ProductDetails)
+            .HasForeignKey(pd => pd.ProductId);
 
     }
 

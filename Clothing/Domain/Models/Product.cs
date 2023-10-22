@@ -12,4 +12,5 @@ public class Product
     public Type? Type { get; set; }
     public int BrandId { get; set; }
     public Brand? Brand { get; set; }
+    public List<ProductDetail> ProductDetails { get; set; } = new();
 }
