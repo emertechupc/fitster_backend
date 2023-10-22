@@ -15,14 +15,25 @@ public class AppDbContext: DbContext
     {
         _configuration = configuration;
     }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(builder);
         //Products
         //Constraints
-        // builder.Entity<Product>()
-        //     .HasIndex(p => p.Name)
-        //     .IsUnique();
+        builder.Entity<Product>().ToTable("Products");
+        builder.Entity<Product>()
+            .HasIndex(p => p.Id)
+            .IsUnique();
+        builder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(256);
+        builder.Entity<Product>().Property(p => p.Description).IsRequired().HasMaxLength(512);
+        builder.Entity<Product>().Property(p => p.Rating);
+
+        //Relationships
+        builder.Entity<Product>()
+            .HasOne(p => p.Category)
+            .WithMany(c => c.Products)
+            .HasForeignKey(p => p.CategoryId);
 
 
 
