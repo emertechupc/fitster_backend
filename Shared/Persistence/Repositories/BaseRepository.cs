@@ -3,17 +3,12 @@ using Fitster.API.Shared.Persistence.Contexts;
 
 namespace Fitster.API.Shared.Persistence.Repositories;
 
-public class UnitOfWork : IUnitOfWork
+public class BaseRepository
 {
-    private readonly AppDbContext _context;
+    protected readonly AppDbContext _context;
 
-    public UnitOfWork(AppDbContext context)
+    public BaseRepository(AppDbContext context)
     {
         _context = context;
-    }
-
-    public async Task CompleteAsync()
-    {
-        await _context.SaveChangesAsync();
     }
 }
