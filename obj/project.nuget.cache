@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "HY/Nrdj3UdeSiKXyfK316Rnr2X0qxuzzwy4tFB46/S0th9FSXsN+VKaAXTA8RP4XhUtP8t1awcW8BrGGjfV52A==",
+  "dgSpecHash": "fewIqw4ahg/VNDp4l6a63Pyg5NcnyVsI/KKA9I7dEb9moHP2PAakvpvcGLS3doOww7MzJJKXmRqiQ8oLV4dKng==",
   "success": true,
   "projectFilePath": "C:\\Users\\James\\Github\\Fitster.API\\Fitster.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\James\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",

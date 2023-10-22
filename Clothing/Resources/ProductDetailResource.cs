@@ -1,6 +1,6 @@
 namespace Fitster.API.Clothing.Resources;
 
-public class ProductDetail
+public class ProductDetailResource
 {
     public int Id { get; set; }
     public string Size { get; set; }  = default!;
