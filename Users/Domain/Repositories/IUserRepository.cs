@@ -1,6 +1,6 @@
 using Fitster.API.Users.Domain.Models;
 
-namespace Fitster.API.Clothing.Domain.Repositories;
+namespace Fitster.API.Users.Domain.Repositories;
 
 public interface IUserRepository
 {

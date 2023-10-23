@@ -2,11 +2,13 @@ using Fitster.API.Clothing.Domain.Models;
 using Fitster.API.Shared.Extensions;
 using Fitster.API.Clothing.Resources;
 using Microsoft.EntityFrameworkCore;
+using Fitster.API.Users.Domain.Models;
 
 namespace Fitster.API.Shared.Persistence.Contexts;
 
 public class AppDbContext: DbContext
 {
+    public DbSet<User> Users { get; set; }
     public DbSet<Product> Products {get; set; }
     public DbSet<ProductDetail> ProductDetails {get; set; }
     protected readonly IConfiguration _configuration;
@@ -17,6 +19,15 @@ public class AppDbContext: DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        //Users
+        //Constraints
+        builder.Entity<User>().ToTable("Users");
+        builder.Entity<User>().HasKey(p => p.Id);
+        builder.Entity<User>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(p => p.FirstName).IsRequired().HasMaxLength(64);
+        builder.Entity<User>().Property(p => p.LastName).IsRequired().HasMaxLength(64);
+        builder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(256);
+
         //Products
         //Constraints
         builder.Entity<Product>().ToTable("Products");
