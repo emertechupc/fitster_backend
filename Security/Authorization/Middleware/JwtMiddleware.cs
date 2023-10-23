@@ -1,5 +1,7 @@
 using Fitster.API.Security.Authorization.Handlers.Interfaces;
-using Org.BouncyCastle.Asn1.Ocsp;
+using Fitster.API.Security.Authorization.Settings;
+using Fitster.API.Users.Domain.Services;
+using Microsoft.Extensions.Options;
 
 namespace Fitster.API.Security.Authorization.Middleware;
 
