@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Leasy.API.Shared.Extensions
+namespace Fitster.API.Shared.Extensions
 {
     public static class ModelStateExtensions
     {
