@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a4JzKHb9E+91qMGdCOXMgRylPGU+i0mqeBqFfSlweUKCdhQFzEy6uVnLrJeedNHOXIDZ7ITbl/uTkpK05FQSVw==",
+  "dgSpecHash": "aBuJJiKSYn5x6o7wxAZKQl+IZVpm7jtOn444FH7z3IjrCvZXavOB+vU4OtkZKutVEZORDEAHh+P1OuzM9DD1Hw==",
   "success": true,
   "projectFilePath": "C:\\Users\\James\\Github\\Fitster.API\\Fitster.API.csproj",
   "expectedPackageFiles": [
@@ -34,8 +34,9 @@
     "C:\\Users\\James\\.nuget\\packages\\mysql.entityframeworkcore\\7.0.5\\mysql.entityframeworkcore.7.0.5.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
-    "C:\\Users\\James\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
-    "C:\\Users\\James\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\James\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.1\\system.configuration.configurationmanager.4.4.1.nupkg.sha512",
