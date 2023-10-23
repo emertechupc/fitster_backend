@@ -4,7 +4,7 @@ using Fitster.API.Clothing.Domain.Services;
 using Fitster.API.Clothing.Domain.Services.Communication;
 using Fitster.API.Shared.Domain.Repositories;
 
-namespace Fitster.API.Reports.Services;
+namespace Fitster.API.Clothing.Services;
 
 public class ProductService: IProductService
 {
