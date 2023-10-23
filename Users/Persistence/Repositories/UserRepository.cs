@@ -33,6 +33,11 @@ public class UserRepository: BaseRepository, IUserRepository
         return _context.Users.Any(u => u.Email == email);
     }
 
+    public User FindById(int id)
+    {
+        return _context.Users.Find(id);
+    }
+
     public async Task AddAsync(User user)
     {
         await _context.Users.AddAsync(user);
