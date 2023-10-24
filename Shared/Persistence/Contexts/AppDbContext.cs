@@ -95,6 +95,10 @@ public class AppDbContext: DbContext
             .WithMany(pd => pd.ProductDetails)
             .HasForeignKey(pd => pd.ProductId);
 
+        // Apply Snake Case Naming Conventions
+        
+        builder.UseSnakeCaseNamingConvention();
+
     }
 
 }
