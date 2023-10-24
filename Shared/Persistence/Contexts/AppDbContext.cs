@@ -11,6 +11,9 @@ public class AppDbContext: DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Product> Products {get; set; }
     public DbSet<ProductDetail> ProductDetails {get; set; }
+    public DbSet<Category> Categories {get; set; }  
+    //public DbSet<Type> Types {get; set; }
+    public DbSet<Brand> Brands {get; set; }
     protected readonly IConfiguration _configuration;
     public AppDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
     {
@@ -37,7 +40,7 @@ public class AppDbContext: DbContext
         builder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(256);
         builder.Entity<Product>().Property(p => p.Description).IsRequired().HasMaxLength(512);
-        builder.Entity<Product>().Property(p => p.Rating).HasColumnType("decimal(10,2)");
+        builder.Entity<Product>().Property(p => p.Rating).IsRequired();
 
         //Relationships
         builder.Entity<Product>()

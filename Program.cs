@@ -2,9 +2,17 @@ using Fitster.API.Clothing.Domain.Repositories;
 using Fitster.API.Clothing.Domain.Services;
 using Fitster.API.Clothing.Persistence.Repositories;
 using Fitster.API.Clothing.Services;
+using Fitster.API.Security.Authorization.Handlers.Implementations;
+using Fitster.API.Security.Authorization.Handlers.Interfaces;
+using Fitster.API.Security.Authorization.Middleware;
+using Fitster.API.Security.Authorization.Settings;
 using Fitster.API.Shared.Domain.Repositories;
 using Fitster.API.Shared.Persistence.Contexts;
 using Fitster.API.Shared.Persistence.Repositories;
+using Fitster.API.Users.Domain.Repositories;
+using Fitster.API.Users.Domain.Services;
+using Fitster.API.Users.Persistence.Repositories;
+using Fitster.API.Users.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -20,7 +28,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors();
 
 // AppSettings Configuration
-//builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -66,8 +74,11 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // User Injection Configuration
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // Security Injection Configuration
+builder.Services.AddScoped<IJwtHandler, JwtHandler>();
 
 // AutoMapper Configuration
 builder.Services.AddAutoMapper(
@@ -84,6 +95,12 @@ app.UseCors(x => x
     .AllowAnyHeader());
 
 // Configure Error Handler Middleware
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
+// Configure JWT Handling Middleware
+
+app.UseMiddleware<JwtMiddleware>();
 
 // Validation for ensuring Database Objects are created
 
