@@ -14,7 +14,7 @@ public class SaveProductResource
     [Required]
     public int CategoryId { get; set; }
     [Required]
-    public int TypeId { get; set; }
+    public int GenderId { get; set; }
     [Required]
     public int BrandId { get; set;}
 }

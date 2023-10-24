@@ -27,9 +27,9 @@ public class ProductService: IProductService
         return await _productRepository.ListByCategoryIdAsync(categoryId);
     }
 
-    public async Task<IEnumerable<Product>> ListByTypeIdAsync(int typeId)
+    public async Task<IEnumerable<Product>> ListByGenderIdAsync(int genderId)
     {
-        return await _productRepository.ListByTypeIdAsync(typeId);
+        return await _productRepository.ListByGenderIdAsync(genderId);
     }
 
     public async Task<IEnumerable<Product>> ListByBrandIdAsync(int brandId)
@@ -37,9 +37,9 @@ public class ProductService: IProductService
         return await _productRepository.ListByBrandIdAsync(brandId);
     }
 
-    public async Task<IEnumerable<Product>> ListByCategoryIdAndTypeIdAsync(int categoryId, int typeId)
+    public async Task<IEnumerable<Product>> ListByCategoryIdAndGenderIdAsync(int categoryId, int genderId)
     {
-        return await _productRepository.ListByCategoryIdAndTypeIdAsync(categoryId, typeId);
+        return await _productRepository.ListByCategoryIdAndGenderIdAsync(categoryId, genderId);
     }
 
     public async Task<IEnumerable<Product>> ListByCategoryIdAndBrandIdAsync(int categoryId, int brandId)
@@ -47,14 +47,14 @@ public class ProductService: IProductService
         return await _productRepository.ListByCategoryIdAndBrandIdAsync(categoryId, brandId);
     }
 
-    public async Task<IEnumerable<Product>> ListByTypeIdAndBrandIdAsync(int typeId, int brandId)
+    public async Task<IEnumerable<Product>> ListByGenderIdAndBrandIdAsync(int genderId, int brandId)
     {
-        return await _productRepository.ListByTypeIdAndBrandIdAsync(typeId, brandId);
+        return await _productRepository.ListByGenderIdAndBrandIdAsync(genderId, brandId);
     }
 
-    public async Task<IEnumerable<Product>> ListByCategoryIdAndTypeIdAndBrandIdAsync(int categoryId, int typeId, int brandId)
+    public async Task<IEnumerable<Product>> ListByCategoryIdAndGenderIdAndBrandIdAsync(int categoryId, int genderId, int brandId)
     {
-        return await _productRepository.ListByCategoryIdAndTypeIdAndBrandIdAsync(categoryId, typeId, brandId);
+        return await _productRepository.ListByCategoryIdAndGenderIdAndBrandIdAsync(categoryId, genderId, brandId);
     }
 
     public async Task<ProductResponse> GetById(int id)
@@ -93,7 +93,7 @@ public class ProductService: IProductService
         existingProduct.Description = product.Description;
         existingProduct.Rating = product.Rating;
         existingProduct.CategoryId = product.CategoryId;
-        existingProduct.TypeId = product.TypeId;
+        existingProduct.GenderId = product.GenderId;
         existingProduct.BrandId = product.BrandId;
 
         try

@@ -12,7 +12,7 @@ public class AppDbContext: DbContext
     public DbSet<Product> Products {get; set; }
     public DbSet<ProductDetail> ProductDetails {get; set; }
     public DbSet<Category> Categories {get; set; }  
-    //public DbSet<Type> Types {get; set; }
+    public DbSet<Gender> Genders {get; set; }
     public DbSet<Brand> Brands {get; set; }
     protected readonly IConfiguration _configuration;
     public AppDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
@@ -30,6 +30,26 @@ public class AppDbContext: DbContext
         builder.Entity<User>().Property(p => p.FirstName).IsRequired().HasMaxLength(64);
         builder.Entity<User>().Property(p => p.LastName).IsRequired().HasMaxLength(64);
         builder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(256);
+
+        //Category
+        builder.Entity<Category>().ToTable("Categories");
+        builder.Entity<Category>().HasKey(p => p.Id);
+        builder.Entity<Category>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Category>().Property(p => p.Name).IsRequired();
+        builder.Entity<Category>().Property(p => p.Description).IsRequired();
+
+        //Gender
+        builder.Entity<Gender>().ToTable("Genders");
+        builder.Entity<Gender>().HasKey(p => p.Id);
+        builder.Entity<Gender>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Gender>().Property(p => p.Name).IsRequired();
+
+        //Brand
+        builder.Entity<Brand>().ToTable("Brands");
+        builder.Entity<Brand>().HasKey(p => p.Id);
+        builder.Entity<Brand>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Brand>().Property(p => p.Name).IsRequired();
+
 
         //Products
         //Constraints
@@ -49,9 +69,9 @@ public class AppDbContext: DbContext
             .HasForeignKey(p => p.CategoryId);
 
         builder.Entity<Product>()
-            .HasOne(p => p.Type)
+            .HasOne(p => p.Gender)
             .WithMany(t => t.Products)
-            .HasForeignKey(p => p.TypeId);
+            .HasForeignKey(p => p.GenderId);
         
         builder.Entity<Product>()
             .HasOne(p => p.Brand)

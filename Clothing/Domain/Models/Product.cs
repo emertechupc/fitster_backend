@@ -8,8 +8,8 @@ public class Product
     public decimal? Rating { get; set; }
     public int CategoryId { get; set; }
     public Category? Category { get; set; }
-    public int TypeId { get; set; }
-    public Type? Type { get; set; }
+    public int GenderId { get; set; }
+    public Gender? Gender { get; set; }
     public int BrandId { get; set; }
     public Brand? Brand { get; set; }
     public List<ProductDetail> ProductDetails { get; set; } = new();

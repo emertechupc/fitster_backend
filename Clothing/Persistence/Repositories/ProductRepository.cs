@@ -35,11 +35,11 @@ public class ProductRepository: BaseRepository, IProductRepository
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Product>> ListByTypeIdAsync(int typeId)
+    public async Task<IEnumerable<Product>> ListByGenderIdAsync(int genderId)
     {
         return await _context.Products
-            .Where(p => p.TypeId == typeId)
-            .Include(p => p.Type)
+            .Where(p => p.GenderId == genderId)
+            .Include(p => p.Gender)
             .ToListAsync();
     }
 
@@ -51,12 +51,12 @@ public class ProductRepository: BaseRepository, IProductRepository
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Product>> ListByCategoryIdAndTypeIdAsync(int categoryId, int typeId)
+    public async Task<IEnumerable<Product>> ListByCategoryIdAndGenderIdAsync(int categoryId, int genderId)
     {
         return await _context.Products
-            .Where(p => p.CategoryId == categoryId && p.TypeId == typeId)
+            .Where(p => p.CategoryId == categoryId && p.GenderId == genderId)
             .Include(p => p.Category)
-            .Include(p => p.Type)
+            .Include(p => p.Gender)
             .ToListAsync();
     }
 
@@ -69,21 +69,21 @@ public class ProductRepository: BaseRepository, IProductRepository
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Product>> ListByTypeIdAndBrandIdAsync(int typeId, int brandId)
+    public async Task<IEnumerable<Product>> ListByGenderIdAndBrandIdAsync(int genderId, int brandId)
     {
         return await _context.Products
-            .Where(p => p.TypeId == typeId && p.BrandId == brandId)
-            .Include(p => p.Type)
+            .Where(p => p.GenderId == genderId && p.BrandId == brandId)
+            .Include(p => p.Gender)
             .Include(p => p.Brand)
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Product>> ListByCategoryIdAndTypeIdAndBrandIdAsync(int categoryId, int typeId, int brandId)
+    public async Task<IEnumerable<Product>> ListByCategoryIdAndGenderIdAndBrandIdAsync(int categoryId, int genderId, int brandId)
     {
         return await _context.Products
-            .Where(p => p.CategoryId == categoryId && p.TypeId == typeId && p.BrandId == brandId)
+            .Where(p => p.CategoryId == categoryId && p.GenderId == genderId && p.BrandId == brandId)
             .Include(p => p.Category)
-            .Include(p => p.Type)
+            .Include(p => p.Gender)
             .Include(p => p.Brand)
             .ToListAsync();
     }
