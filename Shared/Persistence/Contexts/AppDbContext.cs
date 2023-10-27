@@ -3,6 +3,7 @@ using Fitster.API.Shared.Extensions;
 using Fitster.API.Clothing.Resources;
 using Microsoft.EntityFrameworkCore;
 using Fitster.API.Users.Domain.Models;
+using Fitster.API.Shopping.Domain.Models;
 
 namespace Fitster.API.Shared.Persistence.Contexts;
 
@@ -13,6 +14,8 @@ public class AppDbContext: DbContext
     public DbSet<Category> Categories {get; set; }  
     public DbSet<Gender> Genders {get; set; }
     public DbSet<Brand> Brands {get; set; }
+    public DbSet<ShoppingCart> ShoppingCarts {get; set; }
+    public DbSet<ShoppingCartItem> ShoppingCartItems {get; set; }
     protected readonly IConfiguration _configuration;
     public AppDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
     {
@@ -29,6 +32,12 @@ public class AppDbContext: DbContext
         builder.Entity<User>().Property(p => p.FirstName).IsRequired().HasMaxLength(64);
         builder.Entity<User>().Property(p => p.LastName).IsRequired().HasMaxLength(64);
         builder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(256);
+
+        //Relationships
+        builder.Entity<User>()
+            .HasOne(p => p.ShoppingCart)
+            .WithOne(c => c.User)
+            .HasForeignKey<ShoppingCart>(p => p.UserId);
 
         //Category
         builder.Entity<Category>().ToTable("Categories");
@@ -80,6 +89,25 @@ public class AppDbContext: DbContext
             .HasOne(p => p.Brand)
             .WithMany(b => b.Products)
             .HasForeignKey(p => p.BrandId);
+
+        //Shopping Carts
+        //Constraints
+        builder.Entity<ShoppingCart>().ToTable("ShoppingCarts");
+        builder.Entity<ShoppingCart>().HasKey(p => p.Id);
+        builder.Entity<ShoppingCart>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+
+        //Relationships
+        builder.Entity<ShoppingCart>()
+            .HasMany(p => p.ShoppingCartItems)
+            .WithOne(p => p.ShoppingCart)
+            .HasForeignKey(p => p.ShoppingCartId);
+
+        //Shopping Cart Items
+        //Constraints
+        builder.Entity<ShoppingCartItem>().ToTable("ShoppingCartItems");
+        builder.Entity<ShoppingCartItem>().HasKey(p => p.Id);
+        builder.Entity<ShoppingCartItem>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<ShoppingCartItem>().Property(p => p.Quantity).IsRequired();
 
         // Apply Snake Case Naming Conventions
         
