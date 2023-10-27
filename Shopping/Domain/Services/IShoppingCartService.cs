@@ -9,6 +9,5 @@ public interface IShoppingCartService
     Task<ShoppingCartResponse> GetById(int id);
     Task<ShoppingCartResponse> GetByUserId(int userId);
     Task<ShoppingCartResponse> SaveAsync(ShoppingCart shoppingCart);
-    Task<ShoppingCartResponse> UpdateAsync(int id, ShoppingCart shoppingCart);
     Task<ShoppingCartResponse> DeleteAsync(int id);
 }
