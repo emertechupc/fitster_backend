@@ -9,6 +9,8 @@
 */bin/*
 */obj/*
 /packages/
+bin/
+obj/
 
 # Visual Studio Code
 .vscode/*
