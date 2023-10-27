@@ -8,6 +8,8 @@ public class ResourceToModelProfile : Profile
     public ResourceToModelProfile()
     {
         CreateMap<SaveShoppingCartResource, ShoppingCart>();
-        CreateMap<ShoppingCartItemResource, ShoppingCartItem>();
+        CreateMap<SaveShoppingCartItemResource, ShoppingCartItem>();
+        CreateMap<SaveOrderResource, Order>();
+        CreateMap<SaveOrderItemResource, OrderItem>();
     }
 }

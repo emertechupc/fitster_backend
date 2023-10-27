@@ -16,6 +16,8 @@ public class AppDbContext: DbContext
     public DbSet<Brand> Brands {get; set; }
     public DbSet<ShoppingCart> ShoppingCarts {get; set; }
     public DbSet<ShoppingCartItem> ShoppingCartItems {get; set; }
+    public DbSet<Order> Orders {get; set; }
+    public DbSet<OrderItem> OrderItems {get; set; }
     protected readonly IConfiguration _configuration;
     public AppDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
     {
@@ -90,6 +92,11 @@ public class AppDbContext: DbContext
             .WithMany(b => b.Products)
             .HasForeignKey(p => p.BrandId);
 
+        builder.Entity<Product>()
+            .HasOne(p => p.OrderItem)
+            .WithOne(p => p.Product)
+            .HasForeignKey<OrderItem>(p => p.ProductId);
+
         //Shopping Carts
         //Constraints
         builder.Entity<ShoppingCart>().ToTable("ShoppingCarts");
@@ -108,6 +115,28 @@ public class AppDbContext: DbContext
         builder.Entity<ShoppingCartItem>().HasKey(p => p.Id);
         builder.Entity<ShoppingCartItem>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<ShoppingCartItem>().Property(p => p.Quantity).IsRequired();
+
+        //Orders
+        //Constraints
+        builder.Entity<Order>().ToTable("Orders");
+        builder.Entity<Order>().HasKey(p => p.Id);
+        builder.Entity<Order>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Order>().Property(p => p.OrderDate).IsRequired();
+        builder.Entity<Order>().Property(p => p.Total).IsRequired().HasColumnType("decimal(10,2)"); 
+
+        //Relationships
+        builder.Entity<Order>()
+            .HasMany(p => p.OrderItems)
+            .WithOne(p => p.Order)
+            .HasForeignKey(p => p.OrderId);
+
+        //Order Items
+        //Constraints
+        builder.Entity<OrderItem>().ToTable("OrderItems");
+        builder.Entity<OrderItem>().HasKey(p => p.Id);
+        builder.Entity<OrderItem>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<OrderItem>().Property(p => p.Quantity).IsRequired();
+        builder.Entity<OrderItem>().Property(p => p.Subtotal).IsRequired().HasColumnType("decimal(10,2)");
 
         // Apply Snake Case Naming Conventions
         

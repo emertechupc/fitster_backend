@@ -1,3 +1,5 @@
+using Fitster.API.Shopping.Domain.Models;
+
 namespace Fitster.API.Clothing.Domain.Models;
 
 public class Product
@@ -17,4 +19,5 @@ public class Product
     public Gender? Gender { get; set; }
     public int BrandId { get; set; }
     public Brand? Brand { get; set; }
+    public OrderItem OrderItem { get; set; }
 }
