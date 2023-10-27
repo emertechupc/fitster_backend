@@ -10,8 +10,7 @@ namespace Fitster.API.Shopping.Controllers;
 
 [Produces("application/json")]
 [ApiController]
-[Route("/api/v1/[controller]")]
-
+[Route("/api/v1/shoppingcarts/{shoppingCartId}/shoppingcartitems")]
 public class ShoppingCartShoppingCartItemsController: ControllerBase
 {
     private readonly IShoppingCartItemService _shoppingCartItemService;
