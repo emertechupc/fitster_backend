@@ -1,6 +1,7 @@
 using AutoMapper;
 using Fitster.API.Security.Domain.Services.Communication;
 using Fitster.API.Users.Domain.Models;
+
 namespace Fitster.API.Users.Mapping;
 public class ResourceToModelProfile: Profile
 {

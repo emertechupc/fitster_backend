@@ -3,9 +3,9 @@ using Fitster.API.Clothing.Domain.Models;
 using Fitster.API.Clothing.Resources;
 
 namespace Fitster.API.Clothing.Mapping;
-public class ResourcetoModelProfile : Profile
+public class ResourceToModelProfile : Profile
 {
-    public ResourcetoModelProfile()
+    public ResourceToModelProfile()
     {
         CreateMap<SaveProductResource, Product>();
     }

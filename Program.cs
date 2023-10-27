@@ -9,6 +9,8 @@ using Fitster.API.Security.Authorization.Settings;
 using Fitster.API.Shared.Domain.Repositories;
 using Fitster.API.Shared.Persistence.Contexts;
 using Fitster.API.Shared.Persistence.Repositories;
+using Fitster.API.Shopping.Domain.Repositories;
+using Fitster.API.Shopping.Persistence.Repositories;
 using Fitster.API.Users.Domain.Repositories;
 using Fitster.API.Users.Domain.Services;
 using Fitster.API.Users.Persistence.Repositories;
@@ -76,6 +78,9 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+builder.Services.AddScoped<IShoppingCartItemRepository, ShoppingCartItemRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // Security Injection Configuration
 builder.Services.AddScoped<IJwtHandler, JwtHandler>();
@@ -83,7 +88,11 @@ builder.Services.AddScoped<IJwtHandler, JwtHandler>();
 // AutoMapper Configuration
 builder.Services.AddAutoMapper(
     typeof(Fitster.API.Clothing.Mapping.ModelToResourceProfile),
-    typeof(Fitster.API.Clothing.Mapping.ResourcetoModelProfile)
+    typeof(Fitster.API.Clothing.Mapping.ResourceToModelProfile),
+    typeof(Fitster.API.Shopping.Mapping.ModelToResourceProfile),
+    typeof(Fitster.API.Shopping.Mapping.ResourceToModelProfile),
+    typeof(Fitster.API.Users.Mapping.ModelToResourceProfile),
+    typeof(Fitster.API.Users.Mapping.ResourceToModelProfile)
 );
 
 var app = builder.Build();
