@@ -31,14 +31,9 @@ public class OrderService: IOrderService
         return new OrderResponse(existingOrder);
     }
 
-    public async Task<OrderResponse> GetByUserId(int userId)
+    public async Task<IEnumerable<Order>> GetAllByUserId(int userId)
     {
-        var existingOrder = await _orderRepository.GetByUserIdAsync(userId);
-
-        if (existingOrder == null)
-            return new OrderResponse("Order not found.");
-
-        return new OrderResponse(existingOrder);
+        return await _orderRepository.ListByUserIdAsync(userId);
     }
 
     public async Task<OrderResponse> SaveAsync(Order order)

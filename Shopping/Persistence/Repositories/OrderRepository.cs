@@ -17,9 +17,12 @@ public class OrderRepository: BaseRepository, IOrderRepository
         return await _context.Orders.ToListAsync();
     }
 
-    public async Task<Order> GetByUserIdAsync(int userId)
+    public async Task<IEnumerable<Order>> ListByUserIdAsync(int userId)
     {
-        return await _context.Orders.FirstOrDefaultAsync(x => x.UserId == userId);
+        return await _context.Orders
+            .Where(p => p.UserId == userId)
+            .Include(p => p.OrderItems)
+            .ToListAsync();
     }
 
     public async Task AddAsync(Order order)
