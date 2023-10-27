@@ -10,7 +10,6 @@ public class AppDbContext: DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Product> Products {get; set; }
-    public DbSet<ProductDetail> ProductDetails {get; set; }
     public DbSet<Category> Categories {get; set; }  
     public DbSet<Gender> Genders {get; set; }
     public DbSet<Brand> Brands {get; set; }
@@ -50,7 +49,6 @@ public class AppDbContext: DbContext
         builder.Entity<Brand>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Brand>().Property(p => p.Name).IsRequired();
 
-
         //Products
         //Constraints
         builder.Entity<Product>().ToTable("Products");
@@ -61,6 +59,11 @@ public class AppDbContext: DbContext
         builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(256);
         builder.Entity<Product>().Property(p => p.Description).IsRequired().HasMaxLength(512);
         builder.Entity<Product>().Property(p => p.Rating).IsRequired();
+        builder.Entity<Product>().Property(pd => pd.Size).IsRequired().HasMaxLength(10);
+        builder.Entity<Product>().Property(pd => pd.Price).IsRequired().HasColumnType("decimal(10,2)");
+        builder.Entity<Product>().Property(pd => pd.Image).HasMaxLength(1024);
+        builder.Entity<Product>().Property(pd => pd.Stock).IsRequired();
+        builder.Entity<Product>().Property(pd => pd.Model3d).HasMaxLength(2056);
 
         //Relationships
         builder.Entity<Product>()
@@ -77,23 +80,6 @@ public class AppDbContext: DbContext
             .HasOne(p => p.Brand)
             .WithMany(b => b.Products)
             .HasForeignKey(p => p.BrandId);
-
-        //Product Details
-        builder.Entity<ProductDetail>().ToTable("ProductDetails");
-        builder.Entity<ProductDetail>()
-            .HasIndex(pd => pd.Id)
-            .IsUnique();
-        builder.Entity<ProductDetail>().Property(pd => pd.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<ProductDetail>().Property(pd => pd.Size).IsRequired().HasMaxLength(10);
-        builder.Entity<ProductDetail>().Property(pd => pd.Price).IsRequired().HasColumnType("decimal(10,2)");
-        builder.Entity<ProductDetail>().Property(pd => pd.Image).HasMaxLength(1024);
-        builder.Entity<ProductDetail>().Property(pd => pd.Stock).IsRequired();
-        builder.Entity<ProductDetail>().Property(pd => pd.Model3d).HasMaxLength(2056);
-
-        builder.Entity<ProductDetail>()
-            .HasOne(p => p.Product)
-            .WithMany(pd => pd.ProductDetails)
-            .HasForeignKey(pd => pd.ProductId);
 
         // Apply Snake Case Naming Conventions
         

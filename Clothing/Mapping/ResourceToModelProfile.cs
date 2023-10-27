@@ -8,6 +8,5 @@ public class ResourcetoModelProfile : Profile
     public ResourcetoModelProfile()
     {
         CreateMap<SaveProductResource, Product>();
-        CreateMap<SaveProductDetailResource, ProductDetail>();
     }
 }

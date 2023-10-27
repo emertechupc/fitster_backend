@@ -74,8 +74,6 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // User Injection Configuration
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductDetailRepository, ProductDetailRepository>();
-builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 

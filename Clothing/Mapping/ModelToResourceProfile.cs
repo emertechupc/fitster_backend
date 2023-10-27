@@ -9,6 +9,5 @@ public class ModelToResourceProfile : Profile
     public ModelToResourceProfile()
     {
         CreateMap<Product, ProductResource>();
-        CreateMap<ProductDetail, ProductDetailResource>();
     }
 }
