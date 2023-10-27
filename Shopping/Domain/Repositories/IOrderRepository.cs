@@ -5,7 +5,7 @@ namespace Fitster.API.Shopping.Domain.Repositories;
 public interface IOrderRepository
 {
     Task<IEnumerable<Order>> ListAsync();
-    Task<IEnumerable<Order>> ListByUserIdAsync(int userId);
+    Task<Order> GetByUserIdAsync(int userId);
     Task AddAsync(Order order);
     Task<Order> FindByIdAsync(int id);
     void Update(Order order);
