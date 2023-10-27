@@ -9,5 +9,5 @@ public class WishList
     public int Quantity { get; set; }
     public int UserId { get; set; }
     public User User { get; set; } = default!;
-    public List<WishListItem> Items { get; set; } = new();
+    public List<WishListItem> WishListItems { get; set; } = new();
 }

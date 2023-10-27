@@ -18,6 +18,8 @@ public class AppDbContext: DbContext
     public DbSet<ShoppingCartItem> ShoppingCartItems {get; set; }
     public DbSet<Order> Orders {get; set; }
     public DbSet<OrderItem> OrderItems {get; set; }
+    public DbSet<WishList> WishLists {get; set; }
+    public DbSet<WishListItem> WishListItems {get; set; }
     protected readonly IConfiguration _configuration;
     public AppDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
     {
@@ -40,6 +42,11 @@ public class AppDbContext: DbContext
             .HasOne(p => p.ShoppingCart)
             .WithOne(c => c.User)
             .HasForeignKey<ShoppingCart>(p => p.UserId);
+
+        builder.Entity<User>()
+            .HasOne(p => p.WishList)
+            .WithOne(c => c.User)
+            .HasForeignKey<WishList>(p => p.UserId);
 
         //Category
         builder.Entity<Category>().ToTable("Categories");
@@ -97,6 +104,16 @@ public class AppDbContext: DbContext
             .WithOne(p => p.Product)
             .HasForeignKey<OrderItem>(p => p.ProductId);
 
+        builder.Entity<Product>()
+            .HasOne(p => p.ShoppingCartItem)
+            .WithOne(p => p.Product)
+            .HasForeignKey<ShoppingCartItem>(p => p.ProductId);
+
+        builder.Entity<Product>()
+            .HasOne(p => p.WishListItem)
+            .WithOne(p => p.Product)
+            .HasForeignKey<WishListItem>(p => p.ProductId);
+
         //Shopping Carts
         //Constraints
         builder.Entity<ShoppingCart>().ToTable("ShoppingCarts");
@@ -137,6 +154,26 @@ public class AppDbContext: DbContext
         builder.Entity<OrderItem>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<OrderItem>().Property(p => p.Quantity).IsRequired();
         builder.Entity<OrderItem>().Property(p => p.Subtotal).IsRequired().HasColumnType("decimal(10,2)");
+
+        //Wish Lists
+        //Constraints
+        builder.Entity<WishList>().ToTable("WishLists");
+        builder.Entity<WishList>().HasKey(p => p.Id);
+        builder.Entity<WishList>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<WishList>().Property(p => p.Title).IsRequired().HasMaxLength(64);
+        builder.Entity<WishList>().Property(p => p.Quantity).IsRequired();
+
+        //Relationships
+        builder.Entity<WishList>()
+            .HasMany(p => p.WishListItems)
+            .WithOne(p => p.WishList)
+            .HasForeignKey(p => p.WishListId);
+
+        //Wish List Items
+        //Constraints
+        builder.Entity<WishListItem>().ToTable("WishListItems");
+        builder.Entity<WishListItem>().HasKey(p => p.Id);
+        builder.Entity<WishListItem>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
 
         // Apply Snake Case Naming Conventions
         
