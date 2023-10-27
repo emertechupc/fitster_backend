@@ -41,5 +41,4 @@ public class ShoppingCartRepository: BaseRepository, IShoppingCartRepository
     {
         _context.ShoppingCarts.Remove(shoppingCart);
     }
-    `
 }
