@@ -14,7 +14,7 @@ namespace Fitster.API.Users.Controllers;
 
 [Produces("application/json")]
 [ApiController]
-[Route("/api/v1/users/{userId}/orders")]
+[Route("/api/v1/users/{userId}/wishlist")]
 public class UserWishListController : ControllerBase
 {
     private readonly IWishListService _wishListService;
