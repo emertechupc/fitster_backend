@@ -63,21 +63,6 @@ public class WishListItemController: ControllerBase
         return Ok(wishListItemResource);
     }
 
-    [HttpPut("{id}")]
-    [SwaggerOperation(
-        Summary = "Update a wishListItem",
-        Description = "Update a wishListItem identified by its id",
-        Tags = new[] { "WishListItems" })]
-    public async Task<IActionResult> PutAsync(int id, [FromBody] SaveWishListItemResource resource)
-    {
-        var wishListItem = _mapper.Map<SaveWishListItemResource, WishListItem>(resource);
-        var result = await _wishListItemService.UpdateAsync(id, wishListItem);
-        if(!result.Success)
-            return BadRequest(result.Message);
-        var wishListItemResource = _mapper.Map<WishListItem, WishListItemResource>(result.Resource);
-        return Ok(wishListItemResource);
-    }
-
     [HttpDelete("{id}")]
     [SwaggerOperation(
         Summary = "Delete a wishListItem",

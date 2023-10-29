@@ -43,11 +43,6 @@ public class WishListItemRepository: BaseRepository, IWishListItemRepository
         return await _context.WishListItems.FindAsync(id);
     }
 
-    public void Update(WishListItem wishListItem)
-    {
-        _context.WishListItems.Update(wishListItem);
-    }
-
     public void Remove(WishListItem wishListItem)
     {
         _context.WishListItems.Remove(wishListItem);

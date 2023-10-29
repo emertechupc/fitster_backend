@@ -9,6 +9,5 @@ public interface IWishListItemRepository
     Task<IEnumerable<WishListItem>> ListByProductIdAsync(int productId);
     Task AddAsync(WishListItem wishListItem);
     Task<WishListItem> FindByIdAsync(int id);
-    void Update(WishListItem wishListItem);
     void Remove(WishListItem wishListItem);
 }

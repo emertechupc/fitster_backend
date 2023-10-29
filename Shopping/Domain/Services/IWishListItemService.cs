@@ -7,8 +7,7 @@ public interface IWishListItemService
 {
     Task<IEnumerable<WishListItem>> ListAsync();
     Task<WishListItemResponse> GetById(int id);
-    Task<WishListItemResponse> GetByWishListId(int wishListId);
+    Task<IEnumerable<WishListItem>> GetByWishListId(int wishListId);
     Task<WishListItemResponse> SaveAsync(WishListItem wishListItem);
-    Task<WishListItemResponse> UpdateAsync(int id, WishListItem wishListItem);
     Task<WishListItemResponse> DeleteAsync(int id);
 }
