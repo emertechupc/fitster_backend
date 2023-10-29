@@ -58,29 +58,6 @@ public class WishListService: IWishListService
         }
     }
 
-    public async Task<WishListResponse> UpdateAsync(int id, WishList wishList)
-    {
-        var existingWishList = await _wishListRepository.FindByIdAsync(id);
-
-        if (existingWishList == null)
-            return new WishListResponse("WishList not found.");
-
-        existingWishList.UserId = wishList.UserId;
-
-        try
-        {
-            _wishListRepository.Update(existingWishList);
-            await _unitOfWork.CompleteAsync();
-
-            return new WishListResponse(existingWishList);
-        }
-        catch (Exception ex)
-        {
-            // Do some logging stuff
-            return new WishListResponse($"An error occurred when updating the wishList: {ex.Message}");
-        }
-    }
-
     public async Task<WishListResponse> DeleteAsync(int id)
     {
         var existingWishList = await _wishListRepository.FindByIdAsync(id);

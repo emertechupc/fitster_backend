@@ -9,6 +9,5 @@ public interface IWishListService
     Task<WishListResponse> GetById(int id);
     Task<WishListResponse> GetByUserId(int userId);
     Task<WishListResponse> SaveAsync(WishList wishList);
-    Task<WishListResponse> UpdateAsync(int id, WishList wishList);
     Task<WishListResponse> DeleteAsync(int id);
 }
