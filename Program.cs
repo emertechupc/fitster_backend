@@ -130,7 +130,7 @@ using (var context = scope.ServiceProvider.GetService<AppDbContext>())
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment
+if (app.Environment.IsProduction
 ())
 {
     app.UseSwagger();

@@ -11,6 +11,8 @@
 /packages/
 bin/
 obj/
+.idea/
+.vs/
 
 # Visual Studio Code
 .vscode/*
