@@ -14,4 +14,5 @@ public class User
     public string PasswordToken { get; set; }
     //Relationships
     public ShoppingCart ShoppingCart { get; set; }
+    public WishList WishList { get; set; }
 }

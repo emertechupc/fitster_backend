@@ -20,4 +20,6 @@ public class Product
     public int BrandId { get; set; }
     public Brand? Brand { get; set; }
     public OrderItem OrderItem { get; set; }
+    public WishListItem WishListItem { get; set; }
+    public ShoppingCartItem ShoppingCartItem { get; set; }
 }

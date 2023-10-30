@@ -10,7 +10,9 @@ using Fitster.API.Shared.Domain.Repositories;
 using Fitster.API.Shared.Persistence.Contexts;
 using Fitster.API.Shared.Persistence.Repositories;
 using Fitster.API.Shopping.Domain.Repositories;
+using Fitster.API.Shopping.Domain.Services;
 using Fitster.API.Shopping.Persistence.Repositories;
+using Fitster.API.Shopping.Services;
 using Fitster.API.Users.Domain.Repositories;
 using Fitster.API.Users.Domain.Services;
 using Fitster.API.Users.Persistence.Repositories;
@@ -73,14 +75,22 @@ builder.Services.AddRouting(options =>
 // Shared Injection Configuration
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-// User Injection Configuration
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddScoped<IShoppingCartItemRepository, ShoppingCartItemRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IShoppingCartItemService, ShoppingCartItemService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+builder.Services.AddScoped<IOrderItemService, OrderItemService>();
+builder.Services.AddScoped<IWishListItemRepository, WishListItemRepository>();
+builder.Services.AddScoped<IWishListRepository, WishListRepository>();
+builder.Services.AddScoped<IWishListItemService, WishListItemService>();
+builder.Services.AddScoped<IWishListService, WishListService>();
 
 // Security Injection Configuration
 builder.Services.AddScoped<IJwtHandler, JwtHandler>();
@@ -120,7 +130,7 @@ using (var context = scope.ServiceProvider.GetService<AppDbContext>())
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment
+if (app.Environment.IsProduction
 ())
 {
     app.UseSwagger();

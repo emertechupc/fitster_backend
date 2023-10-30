@@ -1,7 +1,6 @@
 namespace Fitster.API.Shopping.Resources;
 
-public class ShoppingCartItemResource
+public class WishListItemResource
 {
     public int Id { get; set; }
-    public int Quantity { get; set; }
 }

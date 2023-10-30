@@ -11,5 +11,7 @@ public class ResourceToModelProfile : Profile
         CreateMap<SaveShoppingCartItemResource, ShoppingCartItem>();
         CreateMap<SaveOrderResource, Order>();
         CreateMap<SaveOrderItemResource, OrderItem>();
+        CreateMap<SaveWishListResource, WishList>();
+        CreateMap<SaveWishListItemResource, WishListItem>();
     }
 }
