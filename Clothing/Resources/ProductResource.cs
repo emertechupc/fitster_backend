@@ -11,4 +11,7 @@ public class ProductResource
     public string? Image { get; set; }
     public int Stock { get; set; }
     public string? Model3d { get; set; }
+    public int CategoryId { get; set; } 
+    public int GenderId { get; set; } 
+    public int BrandId { get; set; } 
 }
